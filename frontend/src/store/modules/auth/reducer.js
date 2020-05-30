@@ -13,6 +13,13 @@ export default function auth(state = INITIAL_STATE, action) {
                 signed: true,
                 user: action.payload.user,
             });
+        case "@auth/SIGN_OUT": {
+            return Object.assign({}, state, {
+                signed: false,
+                token: null,
+                user: null,
+            });
+        }
 
         default:
             return state;
