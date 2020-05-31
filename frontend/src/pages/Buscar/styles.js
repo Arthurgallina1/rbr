@@ -8,7 +8,9 @@ export const BuscarContainer = styled.div`
         /* align-items: center; */
         padding: 0 10%;
         margin-top: 30px;
-
+        label {
+            color: #3bb82e;
+        }
         input {
             width: 90%;
             padding: 10px 8px;

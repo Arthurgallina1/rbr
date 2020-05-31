@@ -36,6 +36,7 @@ const DatePicker = ({ name, label, ...rest }) => {
                 selected={date}
                 onChange={setDate}
                 locale='pt'
+                dateFormat='dd/MM/yyyy'
                 placeholderText='Data do sorteio'
                 timeCaption='Horário'
                 {...rest}

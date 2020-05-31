@@ -24,7 +24,7 @@ export default function SignIn() {
                 </span>
             </HeaderDiv>
             <Form onSubmit={handleSubmit}>
-                <Input name='email' type='text' placeholder='E-mail' />
+                <Input name='username' type='text' placeholder='E-mail' />
                 <Input name='password' type='password' placeholder='Senha' />
 
                 <LoginButton type='submit'>Login</LoginButton>

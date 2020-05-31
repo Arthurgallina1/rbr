@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { BuscarContainer, TopContainer, ResultadosBox, Card } from "./styles";
+import api from "../../services/api";
+import SorteioCard from "../../components/SorteioCard";
 
 export default function Buscar() {
+    const [sorteios, setSorteios] = useState([]);
+
+    useEffect(() => {
+        async function getSorteios() {
+            const response = await api.get("/sorteio");
+            if (response.data.success) {
+                setSorteios(response.data.response);
+            } else {
+            }
+        }
+        getSorteios();
+    }, []);
+
     return (
         <BuscarContainer>
             <Navbar centerText='Voltar' />
             <div className='input-box'>
-                <label htmlFor='buscar'>Buscar</label>
+                <label htmlFor='buscar'>
+                    <strong>Buscar</strong>
+                </label>
                 <input name='buscar' type='text' placeholder='Buscar...' />
             </div>
 
@@ -17,69 +34,9 @@ export default function Buscar() {
                 </big>
 
                 <ResultadosBox>
-                    <Card>
-                        <img src='https://picsum.photos/75' alt='' />
-                        <div className='text-box'>
-                            <h4>NOME DO SORTEIO</h4>
-                            <small>#1231231</small>
-                            <div className='info-box'>
-                                <div className='info-unit'>
-                                    <span className='price'>R$ 15.00</span>
-                                    <small>por rifa</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='quantidade'>5000</span>
-                                    <small>rifas</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='data'>29/10/2020</span>
-                                    <small>sorteio</small>
-                                </div>{" "}
-                            </div>
-                        </div>
-                    </Card>
-                    <Card>
-                        <img src='https://picsum.photos/75' alt='' />
-                        <div className='text-box'>
-                            <h4>NOME DO SORTEIO</h4>
-                            <small>#1231231</small>
-                            <div className='info-box'>
-                                <div className='info-unit'>
-                                    <span className='price'>R$ 15.00</span>
-                                    <small>por rifa</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='quantidade'>5000</span>
-                                    <small>rifas</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='data'>29/10/2020</span>
-                                    <small>sorteio</small>
-                                </div>
-                            </div>
-                        </div>
-                    </Card>
-                    <Card>
-                        <img src='https://picsum.photos/75' alt='' />
-                        <div className='text-box'>
-                            <h4>NOME DO SORTEIO</h4>
-                            <small>#1231231</small>
-                            <div className='info-box'>
-                                <div className='info-unit'>
-                                    <span className='price'>R$ 15.00</span>
-                                    <small>por rifa</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='quantidade'>5000</span>
-                                    <small>rifas</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='data'>29/10/2020</span>
-                                    <small>sorteio</small>
-                                </div>
-                            </div>
-                        </div>
-                    </Card>
+                    {sorteios.map((sorteio) => (
+                        <SorteioCard key={sorteio.id} sorteio={sorteio} />
+                    ))}
                 </ResultadosBox>
             </TopContainer>
         </BuscarContainer>

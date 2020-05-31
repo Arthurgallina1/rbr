@@ -32,6 +32,7 @@ export const Header = styled.div`
     line-height: 28px;
     color: #3bb82e;
     border-left: 5px solid #3bb82e;
+    margin-top: 20px;
 
     h4 {
         margin-left: 25px;
