@@ -5,9 +5,10 @@ import { BuscarContainer, TopContainer, ResultadosBox, Card } from "./styles";
 export default function Buscar() {
     return (
         <BuscarContainer>
-            <Navbar />
+            <Navbar centerText='Voltar' />
             <div className='input-box'>
-                <input type='text' placeholder='Buscar...' />
+                <label htmlFor='buscar'>Buscar</label>
+                <input name='buscar' type='text' placeholder='Buscar...' />
             </div>
 
             <TopContainer>
@@ -17,7 +18,28 @@ export default function Buscar() {
 
                 <ResultadosBox>
                     <Card>
-                        <img src='https://via.placeholder.com/75' alt='' />
+                        <img src='https://picsum.photos/75' alt='' />
+                        <div className='text-box'>
+                            <h4>NOME DO SORTEIO</h4>
+                            <small>#1231231</small>
+                            <div className='info-box'>
+                                <div className='info-unit'>
+                                    <span className='price'>R$ 15.00</span>
+                                    <small>por rifa</small>
+                                </div>
+                                <div className='info-unit'>
+                                    <span className='quantidade'>5000</span>
+                                    <small>rifas</small>
+                                </div>
+                                <div className='info-unit'>
+                                    <span className='data'>29/10/2020</span>
+                                    <small>sorteio</small>
+                                </div>{" "}
+                            </div>
+                        </div>
+                    </Card>
+                    <Card>
+                        <img src='https://picsum.photos/75' alt='' />
                         <div className='text-box'>
                             <h4>NOME DO SORTEIO</h4>
                             <small>#1231231</small>
@@ -38,28 +60,7 @@ export default function Buscar() {
                         </div>
                     </Card>
                     <Card>
-                        <img src='https://via.placeholder.com/75' alt='' />
-                        <div className='text-box'>
-                            <h4>NOME DO SORTEIO</h4>
-                            <small>#1231231</small>
-                            <div className='info-box'>
-                                <div className='info-unit'>
-                                    <span className='price'>R$ 15.00</span>
-                                    <small>por rifa</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='quantidade'>5000</span>
-                                    <small>rifas</small>
-                                </div>
-                                <div className='info-unit'>
-                                    <span className='data'>29/10/2020</span>
-                                    <small>sorteio</small>
-                                </div>
-                            </div>
-                        </div>
-                    </Card>
-                    <Card>
-                        <img src='https://via.placeholder.com/75' alt='' />
+                        <img src='https://picsum.photos/75' alt='' />
                         <div className='text-box'>
                             <h4>NOME DO SORTEIO</h4>
                             <small>#1231231</small>

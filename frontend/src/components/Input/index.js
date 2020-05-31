@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useField } from "@unform/core";
+import { InputCadastro } from "./styles";
 
 export default function Input({ name, label, ...rest }) {
     const inputRef = useRef(null);
@@ -18,7 +19,7 @@ export default function Input({ name, label, ...rest }) {
         <>
             <label htmlFor={fieldName}>{label}</label>
 
-            <input
+            <InputCadastro
                 id={fieldName}
                 ref={inputRef}
                 defaultValue={defaultValue}

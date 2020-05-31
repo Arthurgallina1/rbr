@@ -24,7 +24,9 @@ export default function Dashboard() {
                 </p>
             </TextBox>
             <ButtonBox>
-                <Button main>Sediar Rifa</Button>
+                <Link to='/sediar'>
+                    <Button main>Sediar Rifa</Button>
+                </Link>
                 <Link to='/buscar'>
                     <Button className='white'>Buscar Rifa</Button>
                 </Link>

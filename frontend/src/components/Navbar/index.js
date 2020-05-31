@@ -2,7 +2,7 @@ import React from "react";
 import { NavBarContainer } from "./styles";
 import { FaChevronLeft } from "react-icons/fa";
 import history from "../../services/history";
-export default function Navbar() {
+export default function Navbar({ centerText }) {
     return (
         <NavBarContainer>
             <span className='gray'>
@@ -13,7 +13,7 @@ export default function Navbar() {
                 />
             </span>
             <span>
-                <strong>Entrar</strong>
+                <strong>{centerText}</strong>
             </span>
             <span className='gray'></span>
         </NavBarContainer>
