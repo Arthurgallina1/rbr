@@ -26,6 +26,7 @@ export const InfoContainer = styled.div`
 
     .hosted-box {
         display: flex;
+        justify-content: center;
 
         span {
             color: #595959;
@@ -35,6 +36,9 @@ export const InfoContainer = styled.div`
     img {
         border-radius: 50%;
         margin: 0 20px;
+    }
+    .center {
+        text-align: center;
     }
     .green {
         color: #3bb82e;

@@ -18,6 +18,29 @@ module.exports = {
     }
   },
 
+  async show(req, res) {
+    try {
+      const { sorteio_id, user_id } = req.params;
+      const response = await connection("sorteios")
+        .select("sorteios.*", "users.name", "users.email")
+        .leftJoin("users", "users.id", "=", Number(user_id))
+        .where({ "sorteios.id": sorteio_id })
+        .first();
+      const rifasResponse = await connection("rifas")
+        .select("*")
+        .where({ sorteio_id })
+        .orderBy("numero");
+      const sorteioInfoComRifa = Object.assign({}, response, {
+        rifas: rifasResponse,
+      });
+
+      return res.json({ sorteioInfoComRifa, success: true }).status(201);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ err, success: false });
+    }
+  },
+
   /**
     @route POST sorteio/store
     @desc Salve um sorteio

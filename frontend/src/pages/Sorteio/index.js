@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
+import MapaDeRifa from "../../components/MapaDeRifa";
+import { dataFormatador } from "../../services/utils";
 import {
     ImgSlider,
     SorteioContainer,
@@ -8,7 +11,28 @@ import {
     SumarioBox,
     EntradaButton,
 } from "./styles";
-export default function Sorteio() {
+import api from "../../services/api";
+
+export default function Sorteio({ match }) {
+    const [sorteio, setSorteio] = useState({});
+    const [showRifas, setShowRifas] = useState(false);
+    const user = useSelector((state) => state.auth.user);
+    const sorteio_id = match.params.id;
+    var formatter = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    });
+
+    useEffect(() => {
+        async function getSorteioInfo() {
+            const response = await api.get(`sorteio/${sorteio_id}/${user.id}`);
+            if (response.data.success) {
+                setSorteio(response.data.sorteioInfoComRifa);
+            }
+        }
+        getSorteioInfo();
+    }, []);
+
     return (
         <SorteioContainer>
             <Navbar centerText='Sorteio' />
@@ -16,7 +40,7 @@ export default function Sorteio() {
                 <img src='https://picsum.photos/75' alt='' />
             </ImgSlider>
             <InfoContainer>
-                <h2>Titulo do sorteio </h2>
+                <h2>{sorteio.titulo}</h2>
 
                 <div className='hosted-box'>
                     <span>
@@ -26,24 +50,33 @@ export default function Sorteio() {
                     </span>
                     <img src='https://picsum.photos/50' alt='' />
                     <div className='name-box'>
-                        <h3 className='green'>Vans for Bands</h3>
+                        <h3 className='green'>{sorteio.name}</h3>
                         <h4>Floripa - SC</h4>
                     </div>
                 </div>
                 <InfoBox>
                     <div className='info-box'>
-                        <strong>R$ 2.00</strong>
+                        <strong>
+                            {formatter.format(sorteio.preco_por_rifa)}
+                        </strong>
                         <small>por rifa</small>
                     </div>
                     <div className='info-box'>
-                        <strong>500</strong>
+                        <strong>{sorteio.quantidade_rifas}</strong>
                         <small>rifas</small>
                     </div>
                     <div className='info-box'>
-                        <strong>20/05/2020</strong>
+                        <strong>
+                            {sorteio.data_sorteio &&
+                                dataFormatador(sorteio.data_sorteio)}
+                        </strong>
                         <small>data sorteio</small>
                     </div>
                 </InfoBox>
+                <h3 className='green center'>300 rifas disponíveis!!</h3>
+                <EntradaButton onClick={setShowRifas}>
+                    <strong>VER RIFAS </strong>
+                </EntradaButton>
                 <SumarioBox>
                     <div className='sumario-box'>
                         <h3 className='green'>Sumário do Sorteio</h3>
@@ -66,9 +99,10 @@ export default function Sorteio() {
                 </SumarioBox>
 
                 {/* se ganhador mostra box com infos do ganhador */}
-                <EntradaButton>
+                <EntradaButton onClick={setShowRifas}>
                     <strong>Ver entradas</strong>
                 </EntradaButton>
+                {showRifas && <MapaDeRifa rifas={sorteio.rifas} />}
             </InfoContainer>
         </SorteioContainer>
     );
