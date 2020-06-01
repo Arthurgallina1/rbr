@@ -1,6 +1,7 @@
 const express = require("express");
 const routes = require("./routes");
 const cors = require("cors");
+const morgan = require("morgan");
 class App {
   constructor() {
     this.server = express();
@@ -12,6 +13,7 @@ class App {
   middlewares() {
     this.server.use(express.json());
     this.server.use(cors());
+    this.server.use(morgan("common"));
   }
 
   routes() {

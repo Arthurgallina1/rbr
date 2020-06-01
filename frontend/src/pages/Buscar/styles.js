@@ -18,6 +18,21 @@ export const BuscarContainer = styled.div`
             border-radius: 5px;
         }
     }
+
+    .wrapper {
+        position: relative;
+        margin-top: 5px;
+    }
+    .wrapper input {
+        text-indent: 40px;
+        width: 100%;
+    }
+    .wrapper .fa-search {
+        position: absolute;
+        top: 6px;
+        left: 8px;
+        font-size: 15px;
+    }
 `;
 
 export const TopContainer = styled.div`
@@ -33,38 +48,7 @@ export const TopContainer = styled.div`
 
 export const ResultadosBox = styled.div`
     display: flex;
-    margin-top: 20px;
+    margin-top: 10px;
     flex-direction: column;
     justify-content: center;
-`;
-
-export const Card = styled.div`
-    min-width: 300px;
-    font-size: 14px;
-    display: flex;
-    height: 80px;
-    margin-bottom: 20px;
-    img {
-        border-radius: 5px;
-    }
-
-    .text-box {
-        flex: 1;
-        font-size: 12px;
-        padding: 1px 5px;
-
-        h4 {
-            margin: 0;
-        }
-    }
-
-    .info-box {
-        display: flex;
-        margin-top: 10px;
-        justify-content: space-between;
-    }
-    .info-unit {
-        display: flex;
-        flex-direction: column;
-    }
 `;

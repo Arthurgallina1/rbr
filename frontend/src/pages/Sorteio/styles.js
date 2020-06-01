@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const ImgSlider = styled.div`
     margin-top: 10px;
     width: 100%;
+    display: flex;
+    justify-content: center;
     img {
         width: 100%;
         max-width: 400px;

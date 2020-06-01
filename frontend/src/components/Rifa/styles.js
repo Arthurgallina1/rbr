@@ -13,8 +13,8 @@ export const RifaBox = styled.button`
             : "red"};
     border-radius: 5px;
     margin: 3px;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
 
     &:hover {
         background: ${(props) =>

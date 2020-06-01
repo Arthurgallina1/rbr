@@ -4,6 +4,11 @@ import { format, parseISO } from "date-fns";
 import history from "../../services/history";
 
 export default function SorteioCard({ sorteio }) {
+    var formatter = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    });
+
     const dataFormatada = useMemo(() => {
         const parsedDate = parseISO(sorteio.data_sorteio);
         return format(parsedDate, "dd/MM/yyyy");
@@ -21,17 +26,19 @@ export default function SorteioCard({ sorteio }) {
                 <small>#{sorteio.id}</small>
                 <div className='info-box'>
                     <div className='info-unit'>
-                        <span className='price'>{sorteio.preco_por_rifa}</span>
+                        <span className='price'>
+                            {formatter.format(sorteio.preco_por_rifa)}
+                        </span>
                         <small>por rifa</small>
                     </div>
                     <div className='info-unit'>
-                        <span className='quantidade'>
+                        <span className='price'>
                             {sorteio.quantidade_rifas}
                         </span>
                         <small>rifas</small>
                     </div>
                     <div className='info-unit'>
-                        <span className='data'>{dataFormatada}</span>
+                        <span className='price'>{dataFormatada}</span>
                         <small>sorteio</small>
                     </div>{" "}
                 </div>

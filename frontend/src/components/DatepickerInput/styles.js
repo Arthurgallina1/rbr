@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DateContainer = styled.div`
     .react-datepicker-wrapper {
         padding: 16px 12px;
-        width: 90%;
+        width: 100%;
         background: white;
         border-radius: 5px;
         border: 1px solid rgba(228, 228, 228, 0.6);
