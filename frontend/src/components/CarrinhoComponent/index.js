@@ -23,7 +23,7 @@ export default function CarrinhoComponente({ rifasSelecionadas }) {
         <strong>Total: </strong>{" "}
         {carrinho[0] && formatter.format(carrinho.length * carrinho[0].preco)}
       </div>
-      <Link to="/pagamento">
+      <Link to="/sumario">
         <SelectedButton>
           <MdAttachMoney size={24} color={"#fff"} />
           Pagamento

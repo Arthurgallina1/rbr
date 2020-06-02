@@ -2,10 +2,10 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Toggle from "react-toggle";
 import "react-toggle/style.css"; // for ES6 modules
-import { BsCreditCard } from "react-icons/bs";
 import { PagamentoContainer, Form, CreateButton } from "./styles";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
+import CartNavbar from "../../components/CartNavbar";
 
 export default function Pagamento() {
   function handlePayment(data) {
@@ -15,10 +15,7 @@ export default function Pagamento() {
   return (
     <PagamentoContainer>
       <Navbar centerText="Pagamento" />
-      <div className="upper-box">
-        <BsCreditCard size={30} color={"#3bb82e"} />
-        <span>PAGAMENTO</span>
-      </div>
+      <CartNavbar />
 
       <Form onSubmit={handlePayment}>
         <Input

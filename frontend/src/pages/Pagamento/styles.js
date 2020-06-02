@@ -2,24 +2,6 @@ import styled from "styled-components";
 import { Form as Unform } from "@unform/web";
 export const PagamentoContainer = styled.div`
   margin: 20px 10%;
-
-  .upper-box {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #3bb82e;
-    svg {
-      margin-bottom: 8px;
-    }
-    label,
-    span {
-      font-weight: 500;
-      font-size: 11px;
-      color: #3bb82e;
-      line-height: 13px;
-    }
-  }
 `;
 
 export const Form = styled(Unform)`
