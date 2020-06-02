@@ -6,6 +6,7 @@ exports.up = function (knex) {
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("users.id");
     table.integer("numero").notNullable();
+    table.integer("preco").notNullable();
     table.boolean("disponivel").defaultTo(true);
     table.date("data_venda");
   });

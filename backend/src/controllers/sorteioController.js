@@ -69,13 +69,14 @@ module.exports = {
         })
         .returning("*");
 
-      for (let i = 0; i < quantidade_rifas; i++) {
+      for (let i = 1; i <= quantidade_rifas; i++) {
         const res = await connection("rifas").insert({
           sorteio_id: response.id,
           numero: i,
           user_id: null,
           disponivel: true,
           data_venda: null,
+          preco: preco_por_rifa,
         });
       }
 
