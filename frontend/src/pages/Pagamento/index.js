@@ -15,7 +15,7 @@ export default function Pagamento() {
   return (
     <PagamentoContainer>
       <Navbar centerText="Pagamento" />
-      <CartNavbar />
+      <CartNavbar etapa={"pagamento"} />
 
       <Form onSubmit={handlePayment}>
         <Input

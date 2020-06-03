@@ -7,7 +7,6 @@ export default function MapaDeRifa({ rifas }) {
 
   return (
     <MapaContainer>
-      Sorteio #3203
       <br />
       <CarrinhoComp rifasSelecionadas={rifasSelecionadas} />
       <RifaBox>

@@ -3,7 +3,9 @@ import { NavBox } from "./styles";
 import { BsCreditCard, BsBookmark } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 
-export default function index() {
+export default function index({ etapa }) {
+  const pagamentoOpacity = etapa == "pagamento" ? "1" : "0.5";
+  const resumoOpacity = etapa == "resumo" ? "1" : "0.5";
   // const activeColor = active
   return (
     <NavBox>
@@ -12,10 +14,14 @@ export default function index() {
         <span>CARRINHO</span>
       </div>
       <div className="box">
-        <BsCreditCard size={30} color={"#3bb82e"} />
+        <BsCreditCard
+          size={30}
+          color={"#3bb82e"}
+          style={{ opacity: pagamentoOpacity }}
+        />
         <span>PAGAMENTO</span>
       </div>{" "}
-      <div className="box" style={{ opacity: "0.45" }}>
+      <div className="box" style={{ opacity: resumoOpacity }}>
         <BsBookmark size={30} color={"#3bb82e"} />
         <span>RESUMO</span>
       </div>

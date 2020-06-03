@@ -26,7 +26,7 @@ export default function CarrinhoComponente({ rifasSelecionadas }) {
       <Link to="/sumario">
         <SelectedButton>
           <MdAttachMoney size={24} color={"#fff"} />
-          Pagamento
+          Ir para carrinho
         </SelectedButton>
       </Link>
     </CarrinhoBox>

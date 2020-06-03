@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import CartNavbar from "../../components/CartNavbar";
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
+import { formatter } from "../../services/utils";
 import {
   SumarioContainer,
   CarrinhoBox,
@@ -13,6 +14,7 @@ import {
 
 export default function Sumario() {
   const [groupedBySorteioId, setGroupedBySorteioId] = useState("");
+  const [totalValue, setTotalValue] = useState(0);
   const carrinho = useSelector((state) => state.carrinho.items);
   const groupBySorteioId = (arrayRifas, property) => {
     return arrayRifas.reduce((acc, object) => {
@@ -25,6 +27,13 @@ export default function Sumario() {
     }, {});
   };
 
+  useMemo(() => {
+    if (carrinho.length > 0) {
+      var totalPrice = carrinho.reduce((acc, rifa) => acc + rifa.preco, 0);
+    }
+    setTotalValue(formatter.format(totalPrice));
+  }, [carrinho]);
+
   useEffect(() => {
     const group = groupBySorteioId(carrinho, "sorteio_id");
     setGroupedBySorteioId(group);
@@ -36,27 +45,37 @@ export default function Sumario() {
       <CartNavbar />
 
       <CarrinhoBox>
-        <SorteioBox>
-          <h3>Sorteio #1</h3>
-          <h5>Números selecionados</h5>
-          <span>1 5 7 2 9 21 48 </span>
-          <br />
-          <span>
-            <strong>Preço:</strong> R$25.00
-          </span>
-        </SorteioBox>
-        <SorteioBox>
+        {carrinho.length > 0 ? (
+          <>
+            <SorteioBox>
+              {carrinho && <h3>Sorteio #{carrinho[0]?.sorteio_id}</h3>}
+              <h5>Números selecionados</h5>
+              {carrinho.map((rifa) => (
+                <span key={rifa.numero}> {rifa.numero} </span>
+              ))}
+              <br />
+              {/* <span>
+                <strong>Preço:</strong>
+              </span> */}
+            </SorteioBox>
+            <TotalBox>
+              <span>Subtotal: {totalValue}</span>
+              <Link to="/pagamento">
+                <PagarButton>PAGAR</PagarButton>
+              </Link>
+            </TotalBox>
+          </>
+        ) : (
+          <h3>Seu carrinho está vazio!</h3>
+        )}
+      </CarrinhoBox>
+
+      {/* <SorteioBox>
           <h3>Sorteio #1</h3>
           <h5>Números selecionados</h5>
           <span>1 5 7 2 9 21 48 </span> <br />
           <span>Preço: R$25.00</span>
-        </SorteioBox>
-
-        <TotalBox>Preço Total: R$ 300,00</TotalBox>
-        <Link to="/pagamento">
-          <PagarButton>PAGAR</PagarButton>
-        </Link>
-      </CarrinhoBox>
+        </SorteioBox> */}
     </SumarioContainer>
   );
 }

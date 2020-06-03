@@ -11,7 +11,7 @@ routes.post("/user/store", userController.store);
 routes.use(authMiddleware);
 routes.post("/sorteio", sorteioController.store);
 routes.get("/sorteio", sorteioController.index);
-routes.get("/sorteio/:sorteio_id/:user_id", sorteioController.show);
+routes.get("/sorteio/:sorteio_id", sorteioController.show);
 routes.post("/rifas", rifasController.store);
 routes.get("/", (req, res) => {
   return res.json({ ok: "ok" });
