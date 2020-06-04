@@ -27,7 +27,8 @@ export default function Sorteio({ match }) {
     async function getSorteioInfo() {
       const response = await api.get(`sorteio/${sorteio_id}`);
       if (response.data.success) {
-        setSorteio(response.data.sorteioInfoComRifa);
+        console.log(response.data.sorteioAllInfo.fotosArray[0].url);
+        setSorteio(response.data.sorteioAllInfo);
       }
     }
     getSorteioInfo();
@@ -37,7 +38,7 @@ export default function Sorteio({ match }) {
     <SorteioContainer>
       <Navbar centerText="Sorteio" />
       <ImgSlider>
-        <img src="https://picsum.photos/75" alt="" />
+        {sorteio?.fotosArray && <img src={sorteio.fotosArray[0].url} alt="" />}
       </ImgSlider>
       <InfoContainer>
         <h2>{sorteio.titulo}</h2>

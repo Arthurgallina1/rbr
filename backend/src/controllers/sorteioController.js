@@ -30,13 +30,15 @@ module.exports = {
         .select("*")
         .where({ sorteio_id })
         .orderBy("numero");
-
+      const fotosArray = await connection("sorteio_fotos").where({
+        sorteio_id,
+      });
       const [count] = await connection("rifas")
         .count("*")
         .where({ sorteio_id, disponivel: true });
-      console.log(count);
-      const sorteioInfoComRifa = Object.assign(
+      const sorteioAllInfo = Object.assign(
         {},
+        { fotosArray },
         response,
         { count },
         {
@@ -44,7 +46,7 @@ module.exports = {
         }
       );
 
-      return res.json({ sorteioInfoComRifa, success: true }).status(201);
+      return res.json({ sorteioAllInfo, success: true }).status(201);
     } catch (err) {
       console.log(err);
       return res.status(400).json({ err, success: false });
@@ -67,6 +69,9 @@ module.exports = {
       preco_por_rifa,
     } = req.body;
 
+    const files = req.files;
+    // console.log(files);
+
     try {
       const [response] = await connection("sorteios")
         .insert({
@@ -79,6 +84,9 @@ module.exports = {
         })
         .returning("*");
 
+      /**
+       * @TODO Refatorar
+       */
       for (let i = 1; i <= quantidade_rifas; i++) {
         const res = await connection("rifas").insert({
           sorteio_id: response.id,
@@ -89,14 +97,17 @@ module.exports = {
           preco: preco_por_rifa,
         });
       }
-
-      //   const rifasRes = await axios.post(`http://localhost:8000/rifas`, {
-      //     quantidade_rifas,
-      //     sorteio_id: response.id,
-      //   });
+      for (let i = 0; i < files.length; i++) {
+        const filesResponse = await connection("sorteio_fotos").insert({
+          sorteio_id: response.id,
+          url: `localhost:8000/files/${files[i].filename}`,
+          filename: files[i].filename,
+        });
+      }
 
       return res.json({ response, success: true }).status(201);
     } catch (err) {
+      console.debug("error on sorteio controller", err);
       return res.status(400).json({ err, success: false });
     }
   },

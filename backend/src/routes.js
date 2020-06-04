@@ -13,20 +13,14 @@ const upload = multer(multerConfig);
 
 routes.post("/session", sessionController.auth);
 routes.post("/user/store", userController.store);
-routes.post("/sorteio/files", upload.array("file"), fileController.store);
 routes.use(authMiddleware);
-routes.post("/sorteio", sorteioController.store);
+routes.post("/sorteio/files", upload.array("file"), fileController.store);
+routes.post("/sorteio", upload.array("file"), sorteioController.store);
 routes.get("/sorteio", sorteioController.index);
 routes.get("/sorteio/:sorteio_id", sorteioController.show);
 routes.post("/rifas", rifasController.store);
 routes.post("/teste", upload.array("file"), (req, res) => {
-  const body = req.body;
-  const files = req.files;
-
-  console.debug("files", files);
-  console.debug("body", body);
-
-  return res.json({ files, body });
+  return res.json({});
 });
 
 module.exports = routes;

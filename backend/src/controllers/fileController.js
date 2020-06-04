@@ -4,6 +4,7 @@ const axios = require("axios");
 module.exports = {
   async store(req, res) {
     const file = req.files;
+    console.log(req.body);
     console.log(file);
     try {
       return res.json({ file: file }).status(201);

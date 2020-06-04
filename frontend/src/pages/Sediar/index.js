@@ -20,29 +20,34 @@ export default function Sediar() {
 
   async function handleSubmit(data) {
     console.log(data);
-    const dataFile = new FormData();
-    dataFile.append("username", data.titulo);
-    files.map((file) => dataFile.append("file", file));
-    console.log(dataFile);
-    const response = await api.post("/sorteio/files", dataFile);
-    // try {
-    //   const dataFormatada = format(data.data_sorteio, "yyyy-MM-dd");
-    //   const response = await api.post("/sorteio", {
-    //     user_id: user.id,
-    //     titulo: data.titulo,
-    //     descricao: data.descricao,
-    //     data_sorteio: dataFormatada,
-    //     quantidade_rifas: data.quantidade_rifas,
-    //     preco_por_rifa: data.preco_por_rifa,
-    //   });
-    //   if (response.data.success) {
-    //     //tratar retorno, com modal.
-    //     console.log("criado com sucesso");
-    //   } else {
-    //   }
-    // } catch (err) {
-    //   console.debug("err", err);
-    // }
+
+    try {
+      const dataFormatada = format(data.data_sorteio, "yyyy-MM-dd");
+      const dataFile = new FormData();
+      dataFile.append("user_id", user.id);
+      dataFile.append("titulo", data.titulo);
+      dataFile.append("descricao", data.descricao);
+      dataFile.append("data_sorteio", dataFormatada);
+      dataFile.append("quantidade_rifas", data.quantidade_rifas);
+      dataFile.append("preco_por_rifa", data.preco_por_rifa);
+      files.map((file) => dataFile.append("file", file));
+      const response = await api.post("/sorteio", dataFile);
+      //   const response = await api.post("/sorteio", {
+      //     user_id: user.id,
+      //     titulo: data.titulo,
+      //     descricao: data.descricao,
+      //     data_sorteio: dataFormatada,
+      //     quantidade_rifas: data.quantidade_rifas,
+      //     preco_por_rifa: data.preco_por_rifa,
+      //   });
+      if (response.data.success) {
+        //tratar retorno, com modal.
+        console.log("criado com sucesso");
+      } else {
+      }
+    } catch (err) {
+      console.debug("err", err);
+    }
   }
   return (
     <div>
