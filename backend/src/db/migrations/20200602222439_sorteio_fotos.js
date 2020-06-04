@@ -4,6 +4,7 @@ exports.up = function (knex) {
     table.integer("sorteio_id").unsigned();
     table.foreign("sorteio_id").references("sorteios.id");
     table.string("url").notNullable();
+    table.string("filename").notNullable();
   });
 };
 
