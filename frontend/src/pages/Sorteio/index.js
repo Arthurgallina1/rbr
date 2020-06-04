@@ -33,12 +33,14 @@ export default function Sorteio({ match }) {
     }
     getSorteioInfo();
   }, []);
-
+  console.log(sorteio.fotosArray?.[0].url);
   return (
     <SorteioContainer>
       <Navbar centerText="Sorteio" />
       <ImgSlider>
-        {sorteio?.fotosArray && <img src={sorteio.fotosArray[0].url} alt="" />}
+        {sorteio && (
+          <img src={`http://${sorteio.fotosArray?.[0].url}`} alt="" />
+        )}
       </ImgSlider>
       <InfoContainer>
         <h2>{sorteio.titulo}</h2>
