@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
+import Carousel from "../../components/Carousel";
 import MapaDeRifa from "../../components/MapaDeRifa";
 import { dataFormatador } from "../../services/utils";
+
 import {
   ImgSlider,
   SorteioContainer,
@@ -27,21 +29,20 @@ export default function Sorteio({ match }) {
     async function getSorteioInfo() {
       const response = await api.get(`sorteio/${sorteio_id}`);
       if (response.data.success) {
-        console.log(response.data.sorteioAllInfo.fotosArray[0].url);
         setSorteio(response.data.sorteioAllInfo);
       }
     }
     getSorteioInfo();
   }, []);
-  console.log(sorteio.fotosArray?.[0].url);
   return (
     <SorteioContainer>
       <Navbar centerText="Sorteio" />
-      <ImgSlider>
+      <Carousel imgArray={sorteio.fotosArray} />
+      {/* <ImgSlider>
         {sorteio && (
           <img src={`http://${sorteio.fotosArray?.[0].url}`} alt="" />
         )}
-      </ImgSlider>
+      </ImgSlider> */}
       <InfoContainer>
         <h2>{sorteio.titulo}</h2>
 
