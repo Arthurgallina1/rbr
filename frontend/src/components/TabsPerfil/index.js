@@ -2,11 +2,12 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import PerfilSorteiosAtivos from "../PerfilSorteiosAtivos";
+import PerfilHistorico from "../PerfilHistorico";
 
 export default () => (
     <Tabs>
         <TabList>
-            <Tab>Sorteios</Tab>
+            <Tab>Ativos</Tab>
             <Tab>Histórico</Tab>
         </TabList>
 
@@ -14,7 +15,7 @@ export default () => (
             <PerfilSorteiosAtivos />
         </TabPanel>
         <TabPanel>
-            <h2>Any content 2</h2>
+            <PerfilHistorico />
         </TabPanel>
     </Tabs>
 );

@@ -15,7 +15,6 @@ export default function Sediar() {
     function handleChange(e) {
         const filesArray = Array.from(e.target.files);
         setFiles(filesArray);
-        console.log(filesArray);
     }
 
     async function handleSubmit(data) {

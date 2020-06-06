@@ -11,6 +11,7 @@ import Sorteio from "../pages/Sorteio";
 import Pagamento from "../pages/Pagamento";
 import Sumario from "../pages/Sumario";
 import Perfil from "../pages/Perfil";
+import EditarPerfil from "../pages/EditarPerfil";
 
 export default function Routes() {
     return (
@@ -24,6 +25,7 @@ export default function Routes() {
             <Route path='/sumario' isPrivate component={Sumario} />
             <Route path='/sorteio/:id' isPrivate component={Sorteio} />
             <Route path='/perfil' isPrivate component={Perfil} />
+            <Route path='/editarperfil' isPrivate component={EditarPerfil} />
 
             <Route path='/' component={() => <h1>404</h1>} />
         </Switch>
