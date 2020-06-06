@@ -27,4 +27,19 @@ module.exports = {
       return res.status(400).json({ err, success: false });
     }
   },
+  //sorteios.id = rifas.sorteio_id
+  async index(req, res) {
+    try {
+      const { user_id } = req.body;
+      const response = await connection("rifas")
+        .select("*")
+        .leftJoin("sorteios", { "sorteios.id": "rifas.sorteio_id" })
+        .where({ "rifas.user_id": user_id });
+      console.log(response);
+      return res.json({ response, success: true }).status(201);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ err, success: false });
+    }
+  },
 };
