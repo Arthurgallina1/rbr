@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import api from "../../services/api";
-import { groupObjectByProp, groupArrayBySorteioId } from "../../services/utils";
 import { PerfilSorteiosContainer } from "./styles";
-
+import { dataFormatador } from "../../services/utils";
 export default function PerfilSorteioAtivos() {
     const [sorteios, setSorteios] = useState([]);
     const [sorteiosGrouped, setSorteiosGrouped] = useState([]);
@@ -13,44 +13,43 @@ export default function PerfilSorteioAtivos() {
         async function getSorteios() {
             const response = await api.post("/perfil/sorteios", { user_id });
             if (response.data.success) {
-                setSorteios(response.data.response);
-                const GroupedObject = groupObjectByProp(
-                    response.data.response,
-                    "sorteio_id",
-                    "numero"
-                );
-                const grouped = [
-                    groupObjectByProp(
-                        response.data.response,
-                        "sorteio_id",
-                        "numero"
-                    ),
-                ];
-
-                groupArrayBySorteioId(response.data.response);
-
-                // console.log(response.data.response);
-                setSorteiosGrouped(grouped[0]);
+                console.log(response.data.responseArray);
+                setSorteios(response.data.responseArray);
             } else {
                 console.log("err");
             }
         }
         getSorteios();
     }, []);
+
     return (
         <PerfilSorteiosContainer>
             {/* <h3>Meus sorteios ativos</h3> */}
-            {Object.keys(sorteiosGrouped).map((keyName, i) => (
-                <div className='box' key={keyName}>
-                    <h3>Sorteio {keyName} </h3>
-                    <>
-                        Números:{" "}
-                        {sorteiosGrouped[keyName].map((num) => (
-                            <span>{num}, </span>
-                        ))}
-                    </>
-                </div>
-            ))}
+            {sorteios &&
+                sorteios.map((sorteio) => (
+                    <div className='box' key={sorteio.sorteioInfo[0].id}>
+                        <Link to={`/sorteio/${sorteio.sorteioInfo[0].id}`}>
+                            <h3>Sorteio #{sorteio.sorteioInfo[0].id} </h3>
+                        </Link>
+                        <span>{sorteio.sorteioInfo[0].titulo}</span>
+                        <br />
+                        <span>
+                            Sorteio:{" "}
+                            <strong>
+                                {dataFormatador(
+                                    sorteio.sorteioInfo[0].data_sorteio
+                                )}
+                            </strong>
+                        </span>
+                        <br />
+                        <span>
+                            <strong>Números: </strong>
+                            {sorteio.rifasInfo.map((rifa) => (
+                                <span key={rifa.numero}>{rifa.numero} </span>
+                            ))}
+                        </span>
+                    </div>
+                ))}
         </PerfilSorteiosContainer>
     );
 }

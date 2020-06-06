@@ -8,4 +8,10 @@ export const PerfilSorteiosContainer = styled.div`
     .box {
         margin-top: 20px;
     }
+
+    .noDecoration,
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
 `;
