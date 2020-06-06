@@ -55,7 +55,7 @@ export default function Sorteio({ match }) {
                     <img src='https://picsum.photos/50' alt='' />
                     <div className='name-box'>
                         <h3 className='green'>{sorteio.name}</h3>
-                        <h4>XXXX - SC</h4>
+                        <h4>Florianópolis - SC</h4>
                     </div>
                 </div>
                 <InfoBox>
