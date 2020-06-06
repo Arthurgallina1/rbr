@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { darken, lighten } from "polished";
 
 export const PerfilContainer = styled.div`
-    margin: 20px 0 0 0;
     padding: 0 10%;
     .react-tabs__tab-list {
         border: 0;

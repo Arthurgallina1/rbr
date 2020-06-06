@@ -64,7 +64,7 @@ export default function Sumario() {
                                 </thead>
                                 <tbody>
                                     {carrinho.map((rifa) => (
-                                        <tr key={rifa.numero}>
+                                        <tr key={rifa.id}>
                                             <td>{rifa.numero}</td>
                                             <td>{rifa.sorteio_id}</td>
                                             <td>

@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { isBefore } from "date-fns";
 import api from "../../services/api";
 import { PerfilSorteiosContainer } from "./styles";
 import { dataFormatador } from "../../services/utils";
 export default function PerfilSorteioAtivos() {
     const [sorteios, setSorteios] = useState([]);
-    const [sorteiosGrouped, setSorteiosGrouped] = useState([]);
     const user_id = useSelector((state) => state.auth.user.id);
 
     useEffect(() => {
         async function getSorteios() {
             const response = await api.post("/perfil/sorteios", { user_id });
             if (response.data.success) {
-                setSorteios(response.data.responseArray);
+                const sorteioResponse = response.data.responseArray;
+                const sorteiosFilteredByTodaysDate = sorteioResponse.filter(
+                    (sorteio) =>
+                        isBefore(
+                            new Date(sorteio.sorteioInfo[0].data_sorteio),
+                            new Date()
+                        )
+                );
+                setSorteios(sorteiosFilteredByTodaysDate);
             } else {
                 console.log("err");
             }

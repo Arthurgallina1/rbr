@@ -77,18 +77,7 @@ export default function Sediar() {
                     label='Preço por rifa'
                     placeholder='Preço unitário'
                 />
-                {/* <Input
-                    name='estado'
-                    type='text'
-                    label='Estado'
-                    placeholder='Estado'
-                />
-                <Input
-                    name='cidade'
-                    type='text'
-                    label='Cidade'
-                    placeholder='Cidade'
-                /> */}
+
                 <FileInput
                     name='files'
                     type='file'

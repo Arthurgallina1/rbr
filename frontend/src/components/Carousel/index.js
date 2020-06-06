@@ -5,7 +5,11 @@ import { StyledContainer } from "./styles";
 export default function Carrousel({ imgArray }) {
     return (
         <StyledContainer>
-            <Carousel autoPlay styles={{ textAlign: "center" }}>
+            <Carousel
+                autoPlay
+                styles={{ textAlign: "center" }}
+                statusFormatter={(current, total) => `${current} de ${total}`}
+            >
                 {imgArray &&
                     imgArray.map((img) => (
                         <div key={img.url}>

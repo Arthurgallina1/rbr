@@ -11,6 +11,9 @@ export const CarrinhoBox = styled.div`
     margin-top: 20px;
     padding: 0 20px 20px 20px;
     background: #f3f3f3;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(50, 50, 71, 0.06),
+        0px 4px 4px rgba(50, 50, 71, 0.08);
 `;
 
 export const CarrinhoTable = styled.table`
