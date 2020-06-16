@@ -3,7 +3,7 @@ import { Form as Unform } from "@unform/web";
 
 export const Form = styled(Unform)`
     padding: 0 10%;
-    margin-top: 20px;
+    margin: 20px 0;
 
     label {
         font-size: 15px;

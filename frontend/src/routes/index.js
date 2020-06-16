@@ -10,6 +10,9 @@ import Sediar from "../pages/Sediar";
 import Sorteio from "../pages/Sorteio";
 import Pagamento from "../pages/Pagamento";
 import Sumario from "../pages/Sumario";
+import Perfil from "../pages/Perfil";
+import EditarPerfil from "../pages/EditarPerfil";
+import PaymentWrapper from "../pages/PaymentWrapper";
 
 export default function Routes() {
   return (
@@ -22,6 +25,9 @@ export default function Routes() {
       <Route path="/pagamento" isPrivate component={Pagamento} />
       <Route path="/sumario" isPrivate component={Sumario} />
       <Route path="/sorteio/:id" isPrivate component={Sorteio} />
+      <Route path="/perfil" isPrivate component={Perfil} />
+      <Route path="/editarperfil" isPrivate component={EditarPerfil} />
+      <Route path="/stripe" isPrivate component={PaymentWrapper} />
 
       <Route path="/" component={() => <h1>404</h1>} />
     </Switch>

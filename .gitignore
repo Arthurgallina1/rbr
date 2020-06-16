@@ -1,4 +1,6 @@
 backend/node_modules
 frontend/node_modules
 backend/tmp/uploads
+backend/config.js
+
 

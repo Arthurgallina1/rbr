@@ -32,8 +32,10 @@ export const Button = styled.button`
     color: #fff;
     font: 20px/1em HelveticaNeue;
     padding: 15px 0;
-    background: ${(props) => (props.main ? "#3bb82e" : "white")};
-    color: ${(props) => (props.main ? "white" : "#3bb82e")};
+    background: ${(props) =>
+        props.main ? "#3bb82e" : props.secundary ? "white" : "#004ae0"};
+    color: ${(props) =>
+        props.main ? "white" : props.secundary ? "#3bb82e" : "white"};
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     -ms-border-radius: 30px;
@@ -50,5 +52,8 @@ export const Button = styled.button`
     transition: all ease-out 0.3s;
     &:hover {
         transform: scale(1.1);
+    }
+    .blue {
+        background: linear-gradient(to bottom, #004ae0, #023db5);
     }
 `;
