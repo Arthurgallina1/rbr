@@ -6,6 +6,7 @@ const sessionController = require("./controllers/sessionController");
 const sorteioController = require("./controllers/sorteioController");
 const fileController = require("./controllers/fileController");
 const rifasController = require("./controllers/rifasController");
+const paymentController = require("./controllers/paymentController");
 const authMiddleware = require("./middlewares/auth");
 
 const routes = new Router();
@@ -20,6 +21,7 @@ routes.get("/sorteio", sorteioController.index);
 routes.get("/sorteio/:sorteio_id", sorteioController.show);
 routes.post("/rifas", rifasController.store);
 routes.post("/perfil/sorteios", rifasController.index);
+routes.post("/stripe", paymentController.index);
 routes.post("/teste", upload.array("file"), (req, res) => {
   return res.json({});
 });
