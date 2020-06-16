@@ -8,6 +8,8 @@ import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
 import CartNavbar from "../../components/CartNavbar";
 import api from "../../services/api";
+import "./styles.css";
+
 export default function Pagamento() {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -16,6 +18,23 @@ export default function Pagamento() {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "Arial, sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#32325d",
+        },
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+  };
 
   useEffect(() => {
     async function getPayment() {
@@ -46,8 +65,6 @@ export default function Pagamento() {
         },
       },
     });
-    console.log(payload);
-
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
@@ -60,7 +77,11 @@ export default function Pagamento() {
 
   return (
     <form id="payment-form" onSubmit={(e) => handleSubmit(e)}>
-      <CardElement id="card-element" onChange={handleChange} />
+      <CardElement
+        id="card-element"
+        options={cardStyle}
+        onChange={handleChange}
+      />
 
       <button disabled={processing || disabled || succeeded} id="submit">
         <span id="button-text">
@@ -68,13 +89,11 @@ export default function Pagamento() {
         </span>
       </button>
 
-      {/* 
       {error && (
         <div className="card-error" role="alert">
           {error}
         </div>
       )}
-
 
       <p className={succeeded ? "result-message" : "result-message hidden"}>
         Payment succeeded, see the result in your
@@ -83,7 +102,7 @@ export default function Pagamento() {
           Stripe dashboard.
         </a>{" "}
         Refresh the page to pay again.
-      </p> */}
+      </p>
     </form>
 
     // <PagamentoContainer>
